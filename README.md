@@ -56,7 +56,9 @@ trustworthy-mllm-tutorial/
     └── workflows/          # GitHub Pages deployment workflow
 ```
 
+
 Some directories will be added as the corresponding material becomes available.
+Also, please note that there is also inside this repository the index.html of the tutorials at ECCV and WACV of previous editions.
 
 ---
 
