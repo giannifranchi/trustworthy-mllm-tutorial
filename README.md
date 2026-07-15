@@ -1,1 +1,1 @@
-https://ensta-u2is-ai.github.io/uqt/
+https://giannifranchi.github.io/trustworthy-mllm-tutorial/
