@@ -1,489 +1,309 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en-US">
+
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <!-- Begin Jekyll SEO tag v2.5.0 -->
+  <title>From Hallucination Detection to Adversarial Defense: A Unified Framework for LVLM and LLM Safety</title>
+  <meta name="generator" content="Jekyll v3.8.5" />
+  <meta property="og:title" content="Trustworthy MLLM Tutorial" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="description" content="ECCV 2026 Tutorial on hallucination detection, uncertainty quantification, adversarial attacks, and defenses for LLMs and LVLMs." />
+  <meta property="og:description" content="ECCV 2026 Tutorial on hallucination detection, uncertainty quantification, adversarial attacks, and defenses for LLMs and LVLMs." />
+  <link rel="canonical" href="https://trustworthy-mllm-tutorial.github.io/" />
+  <meta property="og:url" content="https://trustworthy-mllm-tutorial.github.io/" />
+  <meta property="og:site_name" content="Trustworthy MLLM Tutorial" />
+  <script type="application/ld+json">
+  {
+    "description": "ECCV 2026 Tutorial on hallucination detection, uncertainty quantification, adversarial attacks, and defenses for LLMs and LVLMs.",
+    "@type": "WebSite",
+    "url": "https://trustworthy-mllm-tutorial.github.io/",
+    "name": "Trustworthy MLLM Tutorial",
+    "headline": "From Hallucination Detection to Adversarial Defense: A Unified Framework for LVLM and LLM Safety"
+  }
+  </script>
+  <!-- End Jekyll SEO tag -->
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="ECCV 2026 tutorial on hallucination detection, uncertainty quantification, adversarial attacks, and defenses for LLMs and LVLMs.">
-  <meta name="theme-color" content="#08111f">
-  <meta property="og:title" content="Trustworthy MLLM Tutorial">
-  <meta property="og:description" content="From Hallucination Detection to Adversarial Defense: A Unified Framework for LVLM and LLM Safety">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/img/social-card.png">
-  <title>Trustworthy MLLM Tutorial | ECCV 2026</title>
-  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="manifest" href="site.webmanifest">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <script defer src="assets/js/main.js"></script>
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="https://ensta-u2is-ai.github.io/uqt/assets/css/style.css">
+  <link rel="stylesheet" href="https://ensta-u2is-ai.github.io/uqt/assets/mystyle.css">
 </head>
+
 <body>
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <section class="page-header">
+    <h1 class="project-name">From Hallucination Detection to Adversarial Defense:<br>
+      A Unified Framework for LVLM and LLM Safety</h1>
+    <h2 class="project-tagline">ECCV 2026 Tutorial - Room: <strong>To be announced</strong><br>
+      <strong>Date to be announced</strong> - Half-day tutorial<br>
+      Slides, code, notebooks, and the tutorial recording will be <strong>available online</strong>.
+    </h2>
+  </section>
 
-  <header class="site-header" id="top">
-    <div class="nav-shell">
-      <a class="brand" href="#top" aria-label="Trustworthy MLLM Tutorial home">
-        <span class="brand-mark" aria-hidden="true">T</span>
-        <span class="brand-copy">
-          <strong>Trustworthy MLLM</strong>
-          <small>ECCV 2026 Tutorial</small>
-        </span>
-      </a>
-
-      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">
-        <span class="sr-only">Toggle navigation</span>
-        <span></span><span></span><span></span>
-      </button>
-
-      <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
-        <a href="#overview">Overview</a>
-        <a href="#program">Program</a>
-        <a href="#organizers">Organizers</a>
-        <a href="materials/">Materials</a>
-        <a href="bibliography/">Bibliography</a>
-      </nav>
-    </div>
-  </header>
-
-  <main id="main-content">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-backdrop" aria-hidden="true">
-        <span class="orb orb-one"></span>
-        <span class="orb orb-two"></span>
-        <span class="grid-lines"></span>
-      </div>
-      <div class="container hero-grid">
-        <div class="hero-copy reveal">
-          <p class="eyebrow">ECCV 2026 · Half-Day Tutorial</p>
-          <h1 id="hero-title">From Hallucination Detection to <span>Adversarial Defense</span></h1>
-          <p class="hero-subtitle">A unified framework for reliable, uncertainty-aware, and robust Large Language Models and Large Vision-Language Models.</p>
-
-          <div class="hero-actions">
-            <a class="button button-primary" href="#program">Explore the program</a>
-            <a class="button button-secondary" href="materials/">Tutorial materials</a>
-          </div>
-
-          <dl class="event-meta" aria-label="Event information">
-            <div>
-              <dt>Format</dt>
-              <dd>Half day</dd>
-            </div>
-            <div>
-              <dt>Audience</dt>
-              <dd>Beginner-friendly</dd>
-            </div>
-            <div>
-              <dt>Date & room</dt>
-              <dd>To be announced</dd>
-            </div>
-          </dl>
-        </div>
-
-        <div class="hero-visual reveal" aria-label="Illustration of the tutorial safety framework">
-          <div class="framework-card">
-            <p class="framework-label">Unified safety loop</p>
-            <div class="framework-stage stage-one">
-              <span class="stage-number">01</span>
-              <div><strong>Detect</strong><small>Hallucinations & grounding failures</small></div>
-            </div>
-            <div class="framework-connector" aria-hidden="true"></div>
-            <div class="framework-stage stage-two">
-              <span class="stage-number">02</span>
-              <div><strong>Quantify</strong><small>Predictive & semantic uncertainty</small></div>
-            </div>
-            <div class="framework-connector" aria-hidden="true"></div>
-            <div class="framework-stage stage-three">
-              <span class="stage-number">03</span>
-              <div><strong>Defend</strong><small>Adversarial hardening & safe decoding</small></div>
-            </div>
-            <div class="framework-output">
-              <span aria-hidden="true">✓</span>
-              <p><strong>Deploy responsibly</strong><br><small>Grounded · calibrated · robust</small></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="trust-strip" aria-label="Tutorial themes">
-      <div class="container trust-grid">
-        <span>Hallucination detection</span>
-        <span>Semantic uncertainty</span>
-        <span>Prompt injection</span>
-        <span>Adversarial defense</span>
-        <span>Safety evaluation</span>
-      </div>
-    </section>
-
-    <section class="section" id="overview">
-      <div class="container split-layout">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Why this tutorial?</p>
-          <h2>Reliable multimodal intelligence requires more than accurate answers.</h2>
-        </div>
-        <div class="prose reveal">
-          <p class="lead">Large Vision-Language Models extend LLMs to multimodal inputs and now support visual question answering, retrieval, code generation, mathematical reasoning, and other high-impact tasks.</p>
-          <p>Yet these systems can be overconfident, generate convincing but incorrect content, and remain vulnerable to adversarial manipulation. Such failures can spread misinformation and create serious risks in medical, financial, legal, autonomous, and security-sensitive deployments.</p>
-          <p>This tutorial connects three traditionally separate perspectives—hallucination analysis, uncertainty quantification, and adversarial robustness—into a single workflow for identifying failure modes, estimating predictive risk, and designing defenses.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-tinted" id="objectives">
-      <div class="container">
-        <div class="section-heading centered reveal">
-          <p class="eyebrow">Learning objectives</p>
-          <h2>What participants will be able to do</h2>
-          <p>Move from diagnosing model failures to evaluating and mitigating them in practical LLM and LVLM pipelines.</p>
-        </div>
-
-        <div class="card-grid objectives-grid">
-          <article class="info-card reveal">
-            <span class="card-icon" aria-hidden="true">01</span>
-            <h3>Deconstruct hallucinations</h3>
-            <p>Distinguish failures rooted in training data, multimodal grounding, model bias, context, and decoding.</p>
-          </article>
-          <article class="info-card reveal">
-            <span class="card-icon" aria-hidden="true">02</span>
-            <h3>Understand uncertainty</h3>
-            <p>Explain why token probability alone is insufficient and compare token-, sequence-, and semantic-level uncertainty.</p>
-          </article>
-          <article class="info-card reveal">
-            <span class="card-icon" aria-hidden="true">03</span>
-            <h3>Model the threat surface</h3>
-            <p>Recognize prompt injection, jailbreaks, data poisoning, multimodal attacks, and discrete suffix optimization.</p>
-          </article>
-          <article class="info-card reveal">
-            <span class="card-icon" aria-hidden="true">04</span>
-            <h3>Evaluate defenses</h3>
-            <p>Assess fact-checking loops, context enhancement, adversarial training, purification, and constrained decoding.</p>
-          </article>
-          <article class="info-card reveal">
-            <span class="card-icon" aria-hidden="true">05</span>
-            <h3>Build safety audits</h3>
-            <p>Use practical metrics, open-source tools, and reproducible experiments to audit model reliability.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="framework">
-      <div class="container">
-        <div class="section-heading centered reveal">
-          <p class="eyebrow">The unified framework</p>
-          <h2>Three complementary pillars of LLM and LVLM safety</h2>
-        </div>
-
-        <div class="pillar-grid">
-          <article class="pillar pillar-hallucination reveal">
-            <div class="pillar-topline">
-              <span>Part I</span>
-              <span>Angela Yao</span>
-            </div>
-            <h3>Hallucination & grounding</h3>
-            <p>Understand when models contradict the source, external knowledge, the image, or the user's actual intent.</p>
-            <ul>
-              <li>Intrinsic and extrinsic hallucinations</li>
-              <li>Bias and user-misconception following</li>
-              <li>Visual grounding and verification</li>
-              <li>Fact-checking and self-correction loops</li>
-            </ul>
-          </article>
-
-          <article class="pillar pillar-uncertainty reveal">
-            <div class="pillar-topline">
-              <span>Part II</span>
-              <span>Gianni Franchi</span>
-            </div>
-            <h3>Uncertainty quantification</h3>
-            <p>Measure what the model does not know at token, sequence, semantic, and predictive levels.</p>
-            <ul>
-              <li>Overconfidence on incorrect generations</li>
-              <li>Calibration and selective prediction</li>
-              <li>Bayesian methods and deep ensembles</li>
-              <li>Token entropy vs. semantic variance</li>
-            </ul>
-          </article>
-
-          <article class="pillar pillar-defense reveal">
-            <div class="pillar-topline">
-              <span>Part III</span>
-              <span>Mael Jenny</span>
-            </div>
-            <h3>Adversarial attacks & defense</h3>
-            <p>Map attack surfaces across prompts, visual inputs, context windows, tools, and fine-tuning pipelines.</p>
-            <ul>
-              <li>Gradient-based and black-box attacks</li>
-              <li>Prompt injection and jailbreaks</li>
-              <li>Adversarial training and purification</li>
-              <li>Safety-constrained decoding</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-dark" id="program">
-      <div class="container">
-        <div class="section-heading light reveal">
-          <p class="eyebrow">Provisional half-day schedule</p>
-          <h2>From the truth problem to a practical safety audit</h2>
-          <p>The exact conference date, room, and final timings will be announced after acceptance.</p>
-        </div>
-
-        <ol class="timeline">
-          <li class="timeline-item reveal">
-            <time datetime="08:30">08:30–08:40</time>
-            <div class="timeline-card">
-              <span class="timeline-tag">Welcome</span>
-              <h3>Opening: a unified view of safety</h3>
-              <p>Motivation, terminology, tutorial roadmap, and the relationship between factuality, uncertainty, and robustness.</p>
-            </div>
-          </li>
-          <li class="timeline-item reveal">
-            <time datetime="08:40">08:40–09:10</time>
-            <div class="timeline-card">
-              <span class="timeline-tag">Part I · 30 min</span>
-              <h3>The truth problem: hallucinations</h3>
-              <p>Taxonomies, grounding failures, bias, verification strategies, and multimodal examples.</p>
-            </div>
-          </li>
-          <li class="timeline-item reveal">
-            <time datetime="09:10">09:10–10:10</time>
-            <div class="timeline-card">
-              <span class="timeline-tag">Part II · 60 min</span>
-              <h3>Uncertainty beyond token probability</h3>
-              <p>Calibration, Bayesian predictive views, ensembles, semantic uncertainty, and evaluation metrics.</p>
-            </div>
-          </li>
-          <li class="timeline-item break reveal">
-            <time datetime="10:10">10:10–10:30</time>
-            <div class="timeline-card">
-              <span class="timeline-tag">Break · 20 min</span>
-              <h3>Coffee & discussion</h3>
-            </div>
-          </li>
-          <li class="timeline-item reveal">
-            <time datetime="10:30">10:30–11:30</time>
-            <div class="timeline-card">
-              <span class="timeline-tag">Part III · 60 min</span>
-              <h3>Adversarial landscapes and defenses</h3>
-              <p>Prompt and multimodal attacks, threat modeling, red teaming, adaptive evaluation, and hardening strategies.</p>
-            </div>
-          </li>
-          <li class="timeline-item reveal">
-            <time datetime="11:30">11:30–12:30</time>
-            <div class="timeline-card">
-              <span class="timeline-tag">Hands-on · 60 min</span>
-              <h3>Interactive case study & Q&amp;A</h3>
-              <p>Audit an LVLM pipeline from hallucination detection through uncertainty scoring to defense evaluation.</p>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="section" id="case-study">
-      <div class="container case-study-grid">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Hands-on case study</p>
-          <h2>Audit one model through the complete safety loop.</h2>
-          <p>Participants will work through a reproducible notebook that connects qualitative failures to quantitative metrics and mitigation choices.</p>
-          <a class="text-link" href="materials/">View planned materials <span aria-hidden="true">→</span></a>
-        </div>
-        <div class="audit-steps reveal">
-          <div><span>1</span><p><strong>Generate</strong><br>Collect diverse answers under controlled prompts.</p></div>
-          <div><span>2</span><p><strong>Ground</strong><br>Check claims against image evidence and trusted context.</p></div>
-          <div><span>3</span><p><strong>Quantify</strong><br>Estimate confidence, calibration, and semantic disagreement.</p></div>
-          <div><span>4</span><p><strong>Attack</strong><br>Stress-test the system with adaptive prompt or multimodal attacks.</p></div>
-          <div><span>5</span><p><strong>Defend</strong><br>Compare abstention, verification, purification, and safe decoding.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-tinted" id="audience">
-      <div class="container audience-layout">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Audience & prerequisites</p>
-          <h2>Designed for the computer vision and trustworthy-AI communities</h2>
-          <p>The tutorial is intended for academic researchers, graduate students, machine-learning engineers, and industry practitioners working with foundation models.</p>
-        </div>
-        <div class="audience-cards">
-          <article class="mini-card reveal">
-            <h3>Recommended background</h3>
-            <ul class="check-list">
-              <li>Graduate-level deep learning and optimization</li>
-              <li>Familiarity with attention and autoregressive models</li>
-              <li>Basic Python and Hugging Face experience</li>
-            </ul>
-          </article>
-          <article class="mini-card reveal">
-            <h3>No prior safety specialization required</h3>
-            <p>Core concepts in LLMs, LVLMs, uncertainty, and attacks will be introduced progressively, with mathematical intuition and practical examples.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="organizers">
-      <div class="container">
-        <div class="section-heading centered reveal">
-          <p class="eyebrow">Organizing team</p>
-          <h2>Expertise spanning uncertainty, robustness, grounding, and deployment</h2>
-          <p>A joint academic and industrial team from France and Singapore.</p>
-        </div>
-
-        <div class="organizer-grid">
-          <article class="organizer-card reveal">
-            <div class="avatar" aria-hidden="true">GF</div>
-            <div class="organizer-copy">
-              <h3>Gianni Franchi</h3>
-              <p class="role">AMIAD · Palaiseau, France</p>
-              <p>Researcher in uncertainty quantification and trustworthy deep learning, with experience organizing tutorials and workshops at major computer-vision venues.</p>
-              <span class="expertise">Uncertainty quantification</span>
-            </div>
-          </article>
-
-          <article class="organizer-card reveal">
-            <div class="avatar" aria-hidden="true">MJ</div>
-            <div class="organizer-copy">
-              <h3>Mael Jenny</h3>
-              <p class="role">AMIAD · Palaiseau, France</p>
-              <p>Senior researcher focusing on adversarial robustness, attack evaluation, and the security of modern learning systems.</p>
-              <span class="expertise">Adversarial robustness</span>
-            </div>
-          </article>
-
-          <article class="organizer-card reveal">
-            <div class="avatar" aria-hidden="true">DB</div>
-            <div class="organizer-copy">
-              <h3>David Brellmann</h3>
-              <p class="role">Safran Tech · France</p>
-              <p>Research scientist working on hallucination detection in LVLMs, semantic uncertainty, and model interpretability.</p>
-              <span class="expertise">Hallucination detection</span>
-            </div>
-          </article>
-
-          <article class="organizer-card reveal">
-            <div class="avatar" aria-hidden="true">AB</div>
-            <div class="organizer-copy">
-              <h3>Andrei Bursuc</h3>
-              <p class="role">valeo.ai & Inria · Paris, France</p>
-              <p>Researcher in reliable AI, self-supervised foundation models, and autonomous driving, with extensive tutorial and workshop organization experience.</p>
-              <span class="expertise">Reliable foundation models</span>
-            </div>
-          </article>
-
-          <article class="organizer-card reveal">
-            <div class="avatar" aria-hidden="true">AY</div>
-            <div class="organizer-copy">
-              <h3>Angela Yao</h3>
-              <p class="role">National University of Singapore</p>
-              <p>Professor specializing in machine learning, computer vision, video understanding, and grounded multimodal reasoning.</p>
-              <span class="expertise">Visual grounding</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-dark compact" id="materials">
-      <div class="container materials-layout">
-        <div class="section-heading light reveal">
-          <p class="eyebrow">Open tutorial resources</p>
-          <h2>Slides, notebooks, recordings, and a curated safety roadmap</h2>
-          <p>The repository is structured so each resource can be published progressively before and after the tutorial.</p>
-        </div>
-        <div class="resource-grid">
-          <a class="resource-card reveal" href="materials/#slides">
-            <span aria-hidden="true">▤</span><strong>Slides</strong><small>Interactive lecture decks</small>
-          </a>
-          <a class="resource-card reveal" href="materials/#notebooks">
-            <span aria-hidden="true">⌘</span><strong>Notebooks</strong><small>Colab-ready practicals</small>
-          </a>
-          <a class="resource-card reveal" href="materials/#recordings">
-            <span aria-hidden="true">▶</span><strong>Recordings</strong><small>Session videos</small>
-          </a>
-          <a class="resource-card reveal" href="bibliography/">
-            <span aria-hidden="true">↗</span><strong>Safety roadmap</strong><small>Annotated bibliography</small>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="diversity">
-      <div class="container split-layout">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Diversity & inclusion</p>
-          <h2>Multiple perspectives are essential to responsible AI safety.</h2>
-        </div>
-        <div class="prose reveal">
-          <p>The tutorial brings together academia and industry, Europe and Asia, and a broad range of career stages. This combination supports a balanced discussion of theoretical rigor, practical constraints, and the societal consequences of deploying generative models.</p>
-          <p>We are committed to an inclusive learning environment and to presenting safety methods in a way that is accessible to newcomers while remaining useful to experienced researchers and practitioners.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-tinted" id="related-work">
-      <div class="container">
-        <div class="section-heading centered reveal">
-          <p class="eyebrow">Positioning</p>
-          <h2>Connecting topics usually taught in isolation</h2>
-          <p>Prior tutorials have addressed uncertainty, hallucinations, or jailbreaks separately. This tutorial emphasizes their interaction in a shared risk-management framework.</p>
-        </div>
-        <div class="comparison-grid">
-          <article class="comparison-card reveal"><span>Prior focus</span><h3>Uncertainty quantification</h3><p>How confidence and predictive risk can be estimated in LLMs and multimodal models.</p></article>
-          <article class="comparison-card reveal"><span>Prior focus</span><h3>Hallucination mitigation</h3><p>Why generative models produce unsupported outputs and how grounding can improve factuality.</p></article>
-          <article class="comparison-card reveal"><span>Prior focus</span><h3>Jailbreaks & attacks</h3><p>How adversaries manipulate prompts, contexts, visual inputs, agents, and model behavior.</p></article>
-          <article class="comparison-card highlighted reveal"><span>Our contribution</span><h3>Unified safety workflow</h3><p>Detect failures, quantify risk, stress-test adaptively, and select appropriate defenses.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section compact" id="references">
-      <div class="container references-preview">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Selected references</p>
-          <h2>Research foundations</h2>
-        </div>
-        <div class="reference-list reveal">
-          <p><strong>Laurent et al.</strong> Packed-Ensembles for Efficient Uncertainty Estimation. ICLR 2023.</p>
-          <p><strong>Franchi et al.</strong> Make Me a BNN: A Simple Strategy for Estimating Bayesian Uncertainty from Pre-trained Models. CVPR 2024.</p>
-          <p><strong>Hoche et al.</strong> Improving Semantic Uncertainty Quantification in LVLMs with Semantic Gaussian Processes. 2025.</p>
-          <p><strong>Xiao et al.</strong> Can I Trust Your Answer? Visually Grounded Video Question Answering. CVPR 2024.</p>
-          <a class="text-link" href="bibliography/">Open the annotated bibliography <span aria-hidden="true">→</span></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta-section">
-      <div class="container cta-card reveal">
-        <div>
-          <p class="eyebrow">Follow the tutorial</p>
-          <h2>All public material will live in this repository.</h2>
-          <p>Star the GitHub repository to receive updates when slides, notebooks, and recordings are released.</p>
-        </div>
-        <a class="button button-primary" href="https://github.com/trustworthy-mllm-tutorial/trustworthy-mllm-tutorial.github.io" rel="noopener noreferrer">Open on GitHub</a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-grid">
+  <section class="main-content" style="max-width:100%">
+    <div class="container">
+      <h2>Organizers</h2>
       <div>
-        <a class="brand footer-brand" href="#top">
-          <span class="brand-mark" aria-hidden="true">T</span>
-          <span class="brand-copy"><strong>Trustworthy MLLM</strong><small>ECCV 2026 Tutorial</small></span>
-        </a>
-        <p>From Hallucination Detection to Adversarial Defense.</p>
+        <div class="instructor">
+          <a href="https://u2is.ensta-paris.fr/members/franchi/index.php?lang=en" target="_blank" rel="noopener noreferrer">
+            <div class="instructorphoto"><img src="assets/franchi.jpg" alt="Gianni Franchi"> </div>
+            <div>Gianni Franchi<br><small>AMIAD &amp; ENSTA Paris</small></div>
+          </a>
+        </div>
+
+        <div class="instructor">
+          <a href="#" target="_blank" rel="noopener noreferrer">
+            <div class="instructorphoto"><img src="https://ui-avatars.com/api/?name=Mael+Jenny&amp;size=256" alt="Mael Jenny"> </div>
+            <div>Mael Jenny<br><small>AMIAD</small></div>
+          </a>
+        </div>
+
+        <div class="instructor">
+          <a href="#" target="_blank" rel="noopener noreferrer">
+            <div class="instructorphoto"><img src="https://ui-avatars.com/api/?name=David+Brellmann&amp;size=256" alt="David Brellmann"> </div>
+            <div>David Brellmann<br><small>Safran Tech</small></div>
+          </a>
+        </div>
+
+        <div class="instructor">
+          <a href="https://abursuc.github.io/" target="_blank" rel="noopener noreferrer">
+            <div class="instructorphoto"><img src="https://abursuc.github.io/img/abursuc.jpg" alt="Andrei Bursuc"></div>
+            <div>Andrei Bursuc<br><small>valeo.ai &amp; Inria</small></div>
+          </a>
+        </div>
+
+        <div class="instructor">
+          <a href="https://www.comp.nus.edu.sg/~ayao/" target="_blank" rel="noopener noreferrer">
+            <div class="instructorphoto"><img src="https://ui-avatars.com/api/?name=Angela+Yao&amp;size=256" alt="Angela Yao"> </div>
+            <div>Angela Yao<br><small>National University of Singapore</small></div>
+          </a>
+        </div>
+
+        <br>
+
+        <div class="containertext" style="max-width:50rem">
+          <h2 style="text-align: center">Overview</h2>
+          <p>
+            Large Vision-Language Models (LVLMs) and Large Language Models (LLMs) are increasingly used for visual
+            question answering, retrieval, code generation, mathematical reasoning, decision support, and other
+            high-impact applications. Despite their impressive capabilities, these models can generate plausible but
+            incorrect information, remain overconfident when they fail, and be manipulated through adversarial prompts,
+            poisoned data, jailbreaks, or attacks on their multimodal inputs.
+          </p>
+          <p>
+            This tutorial presents a unified perspective on trustworthy LLMs and LVLMs. We connect three complementary
+            questions: <strong>How can failures and hallucinations be detected?</strong> <strong>How can their uncertainty
+            and predictive risk be quantified?</strong> and <strong>How can models and inference pipelines be defended
+            against adversarial manipulation?</strong> The tutorial is designed to be accessible to newcomers while also
+            presenting recent research directions, practical evaluation tools, and open problems.
+          </p>
+
+          <h3 style="text-align: left">Learning objectives</h3>
+          <ul>
+            <li><strong>Understand hallucinations:</strong> distinguish intrinsic, extrinsic, visual, factual, and reasoning-related failures.</li>
+            <li><strong>Quantify uncertainty:</strong> understand why token probability alone is insufficient and compare token-, sequence-, and semantic-level uncertainty.</li>
+            <li><strong>Model adversarial threats:</strong> identify vulnerabilities in prompts, visual inputs, context windows, retrieval pipelines, and fine-tuning data.</li>
+            <li><strong>Evaluate defenses:</strong> study grounding, verification, abstention, robust alignment, adversarial training, purification, and safety-aware decoding.</li>
+            <li><strong>Apply the ideas:</strong> use practical libraries and notebooks to audit model safety and evaluate reliability.</li>
+          </ul>
+        </div>
+
+        <div class="containertext" style="max-width:50rem">
+          <h2 style="text-align: center">Schedule</h2>
+          <p>
+          <ul>
+            <li><b>8:30 - 9:00</b>: The Truth Problem: Hallucinations in LLMs and LVLMs - Angela</li>
+            <li><b>9:00 - 10:00</b>: Uncertainty Quantification beyond Token Probabilities - Gianni &amp; David</li>
+            <li><b>10:00 - 10:25</b>: ☕ Coffee break ☕</li>
+            <li><b>10:25 - 11:25</b>: Adversarial Threats, Jailbreaks, and Robust Defenses - Mael &amp; Andrei</li>
+            <li><b>11:25 - 12:20</b>: Interactive Safety Audit and Hands-on Case Study - All organizers</li>
+            <li><b>12:20 - 12:30</b>: Open Problems, Closing Remarks, and Q&amp;A - All organizers</li>
+          </ul>
+          </p>
+
+          <br>
+
+          <div id="materials" style="text-align:center">
+            <a href="#">
+              <p style="text-align:center;font-size:36px;color:#088F8F"> 💻 Practical session materials coming soon 💻 </p>
+            </a>
+          </div>
+
+          <div class="containertext" style="max-width:50rem">
+            <h2 style="text-align: center">Outline</h2>
+
+            <h3 style="text-align: left">Introduction: Why trustworthy multimodal language models?</h3>
+            <p>
+              We begin by describing where LLMs and LVLMs are deployed, why their failures differ from those of
+              conventional classifiers, and how safety depends on the interaction between model knowledge, prompts,
+              multimodal grounding, decoding, external tools, and users. This motivates our central framework:
+              <strong>detect, quantify, and defend</strong>.
+            </p>
+
+            <h3 style="text-align: left">Part I: Hallucinations, bias, grounding, and verification.</h3>
+            <p>
+              This part introduces a taxonomy of hallucinations, including intrinsic errors that contradict the provided
+              source, extrinsic errors that conflict with external knowledge, object and attribute hallucinations in
+              LVLMs, and reasoning failures. We discuss the role of pre-training data, fine-tuning, user misconceptions,
+              decoding, and insufficient visual grounding. We then review fact-checking loops, retrieval, self-correction,
+              consistency tests, and external verification.
+            </p>
+
+            <h3 style="text-align: left">Part II: Uncertainty Quantification for LLMs and LVLMs.</h3>
+            <p>
+              Modern generative models can assign high probability to incorrect outputs. We explain why raw token
+              probabilities and token entropy do not provide a complete measure of confidence. The tutorial then covers
+              calibration, predictive entropy, sequence likelihood, sampling-based uncertainty, semantic clustering,
+              semantic entropy, consistency across generations, ensembles, Bayesian approximations, and uncertainty-aware
+              abstention. Particular attention is given to the distinction between local token-level uncertainty and
+              global sentence- or meaning-level uncertainty.
+            </p>
+
+            <h3 style="text-align: left">Part III: Adversarial attacks on language and multimodal models.</h3>
+            <p>
+              We map the attack surface across user prompts, system prompts, visual inputs, demonstrations, retrieval
+              databases, context windows, fine-tuning datasets, and tool-using agents. We introduce prompt injection,
+              jailbreaks, adversarial images, data poisoning, backdoors, model extraction, gradient-based discrete suffix
+              optimization such as GCG, and black-box social-engineering attacks. We emphasize the special difficulties
+              created by discrete language inputs and multimodal interactions.
+            </p>
+
+            <h3 style="text-align: left">Part IV: Mitigation and robust defense.</h3>
+            <p>
+              This part compares defenses at different stages of the pipeline: input filtering and purification,
+              trustworthy retrieval and context enhancement, model alignment, adversarial training, uncertainty-aware
+              rejection, safety classifiers, robust system prompts, constrained or verified decoding, output monitoring,
+              post-inference correction, and human oversight. We discuss how to evaluate defenses without relying only on
+              average benchmark performance and why adaptive attacks must be considered.
+            </p>
+
+            <h3 style="text-align: left">Interactive case study and practical evaluation.</h3>
+            <p>
+              Participants will audit a small LLM or LVLM pipeline. They will generate multiple answers, measure lexical
+              and semantic disagreement, inspect calibration and failure prediction, construct adversarial prompts, and
+              compare simple mitigation strategies. The session will demonstrate how hallucination detection,
+              uncertainty quantification, and adversarial robustness complement one another in a single safety workflow.
+            </p>
+
+            <h3 style="text-align: left">Open-source tools and supplementary material.</h3>
+            <p>
+              The website and repository will provide slides, annotated references, code, and Google Colab notebooks.
+              The tutorial will also introduce the
+              <a href="https://github.com/ENSTA-U2IS/torch-uncertainty" target="_blank" rel="noopener noreferrer">Torch-Uncertainty</a>
+              library and complementary tools from the Hugging Face ecosystem for model inference, evaluation, and safety auditing.
+            </p>
+          </div>
+
+          <a href="https://torch-uncertainty.github.io/" target="_blank" rel="noopener noreferrer">
+            <center>
+              <div><img src="assets/logoTU_full.png" width="40%" hspace="2%" alt="Torch-Uncertainty logo"> </div>
+            </center>
+          </a>
+
+          <br>
+
+          <div class="containertext" style="max-width:50rem">
+            <h2 style="text-align: center">Intended audience and prerequisites</h2>
+            <p>
+              The tutorial targets academic researchers, graduate students, machine learning engineers, and industry
+              practitioners interested in AI safety, security, trustworthy machine learning, and multimodal foundation
+              models. It is particularly relevant to researchers and engineers deploying generative models in high-stakes
+              environments.
+            </p>
+            <p><strong>Recommended prerequisites:</strong></p>
+            <ul>
+              <li>Graduate-level knowledge of deep learning and optimization.</li>
+              <li>Basic familiarity with Transformers, attention, and autoregressive generation.</li>
+              <li>Basic Python knowledge and familiarity with the Hugging Face ecosystem for the practical session.</li>
+            </ul>
+          </div>
+
+          <div class="containertext" style="max-width:50rem">
+            <h2 style="text-align: center">Relation to prior tutorials and short courses</h2>
+            <p>
+              Previous tutorials have studied individual dimensions of trustworthy generative AI. Some have focused on
+              uncertainty quantification and reliability for deep learning, while others have addressed hallucinations,
+              factuality, jailbreaks, or agentic attacks. Examples include
+              <a href="https://abursuc.github.io/many-faces-reliability/" target="_blank" rel="noopener noreferrer">The Many Faces of Reliability of Deep Learning for Real-World Deployment</a>,
+              the AAAI tutorial on uncertainty quantification for large language models, and the
+              <a href="https://jailbreak-tutorial.github.io/" target="_blank" rel="noopener noreferrer">Jailbreaking LLMs and Agentic Systems</a> tutorial.
+            </p>
+            <p>
+              Our tutorial differs by placing hallucination analysis, semantic uncertainty, adversarial threat modeling,
+              and robust defense within one unified framework. It also emphasizes practical evaluation: participants will
+              learn not only how failures arise, but also how to measure predictive risk and test whether a defense remains
+              effective against adaptive attacks.
+            </p>
+          </div>
+
+          <div class="containertext" style="max-width:50rem">
+            <h2 style="text-align: center">Selected References</h2>
+            <ol>
+              <li>
+                <b>Laurent, O., Lafage, A., Tartaglione, E., Daniel, G., Martinez, J. M., Bursuc, A., &amp; Franchi, G.</b>
+                <a href="https://arxiv.org/abs/2210.09184" target="_blank" rel="noopener noreferrer">Packed-Ensembles for Efficient Uncertainty Estimation</a>.
+                ICLR, 2023.
+              </li>
+              <li>
+                <b>Lafage, A., Laurent, O., Gabtni, F., &amp; Franchi, G.</b>
+                <a href="https://github.com/ENSTA-U2IS/torch-uncertainty" target="_blank" rel="noopener noreferrer">Torch-Uncertainty: A Deep Learning Framework for Uncertainty Quantification</a>.
+                NeurIPS, 2025.
+              </li>
+              <li>
+                <b>Franchi, G., Laurent, O., Leguéry, M., Bursuc, A., Pilzer, A., &amp; Yao, A.</b>
+                <a href="https://arxiv.org/abs/2312.07995" target="_blank" rel="noopener noreferrer">Make Me a BNN: A Simple Strategy for Estimating Bayesian Uncertainty from Pre-trained Models</a>.
+                CVPR, 2024.
+              </li>
+              <li>
+                <b>Hoche, J., Bursuc, A., Brellmann, D., Louppe, G., Izmailov, P., Yao, A., &amp; Franchi, G.</b>
+                Improving Semantic Uncertainty Quantification in LVLMs with Semantic Gaussian Processes. arXiv, 2025.
+              </li>
+              <li>
+                <b>Xiao, J., Yao, A., Li, Y., &amp; Chua, T. S.</b>
+                <a href="https://openaccess.thecvf.com/content/CVPR2024/html/Xiao_Can_I_Trust_Your_Answer_Visually_Grounded_Video_Question_Answering_CVPR_2024_paper.html" target="_blank" rel="noopener noreferrer">Can I Trust Your Answer? Visually Grounded Video Question Answering</a>.
+                CVPR, 2024.
+              </li>
+              <li>
+                <b>Zou, A., Wang, Z., Kolter, J. Z., &amp; Fredrikson, M.</b>
+                <a href="https://arxiv.org/abs/2307.15043" target="_blank" rel="noopener noreferrer">Universal and Transferable Adversarial Attacks on Aligned Language Models</a>.
+                2023.
+              </li>
+              <li>
+                <b>Ji, Z., Lee, N., Frieske, R., et al.</b>
+                <a href="https://arxiv.org/abs/2202.03629" target="_blank" rel="noopener noreferrer">Survey of Hallucination in Natural Language Generation</a>.
+                ACM Computing Surveys, 2023.
+              </li>
+              <li>
+                <b>Kuhn, L., Gal, Y., &amp; Farquhar, S.</b>
+                <a href="https://arxiv.org/abs/2302.09664" target="_blank" rel="noopener noreferrer">Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation</a>.
+                ICLR, 2023.
+              </li>
+            </ol>
+            Additional references and an annotated safety roadmap will be released with the tutorial materials.
+          </div>
+
+          <br>
+
+          <div class="containertext">
+            <h3 style="text-align: center">A tutorial connecting academia and industry</h3>
+            <p style="text-align:center">
+              Organized by researchers from AMIAD, ENSTA Paris, Safran Tech, Inria, valeo.ai, and the National University of Singapore.
+            </p>
+          </div>
+        </div>
       </div>
-      <nav aria-label="Footer navigation">
-        <a href="#overview">Overview</a>
-        <a href="#program">Program</a>
-        <a href="#organizers">Organizers</a>
-        <a href="materials/">Materials</a>
-        <a href="bibliography/">Bibliography</a>
-      </nav>
-      <p class="copyright">© <span id="year">2026</span> Trustworthy MLLM Tutorial. Released under the MIT License.</p>
     </div>
-  </footer>
+  </section>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrJIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
 </body>
+
 </html>
